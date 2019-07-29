@@ -11,4 +11,16 @@ module.exports = {
     },
     seeds: { directory: './models/seeds' },
   },
+  testing: {
+    client: 'pg',
+    connection: process.env.DB_URL_TEST,
+    useNullAsDefault: true,
+    migrations: {
+      directory: './models/migrations',
+      tableName: 'dbmigrations',
+    },
+    seeds: {
+      directory: './models/seeds',
+    },
+  },
 };
