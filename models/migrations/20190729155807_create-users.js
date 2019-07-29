@@ -1,5 +1,3 @@
-/* eslint-disable func-names */
-// eslint-disable-next-line func-names
 exports.up = function (knex) {
   return knex.schema.createTable('users', (users) => {
     users.increments();
