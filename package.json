@@ -1,0 +1,43 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "test": "cross-env DB_ENV=testing jest --watch --verbose",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bw-expat-journal/Back-End.git"
+  },
+  "keywords": [],
+  "author": "Yusuf Ayo Abdulkarim",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bw-expat-journal/Back-End/issues"
+  },
+  "homepage": "https://github.com/bw-expat-journal/Back-End#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.19.1",
+    "pg": "^7.12.0"
+  },
+  "devDependencies": {
+    "crossenv": "0.0.2-security",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
+  }
+}
