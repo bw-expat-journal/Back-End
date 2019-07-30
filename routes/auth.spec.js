@@ -75,3 +75,28 @@ describe('[POST] /api/v1/auth/signup', () => {
       expect(res.body.error).toBeDefined();
     }));
 });
+
+describe('[POST] /api/v1/auth/login', () => {
+  it('should login user if all input are provided correctly', () => request(server)
+    .post('/api/v1/auth/login')
+    .send({
+      email: 'yusuf@ayo.com',
+      password: '123456',
+    })
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.body.token).toBeDefined();
+    }));
+  it('should not log user in if email and password is incorrect', () => request(server)
+    .post('/api/v1/auth/login')
+    .send({
+      email: 'yusu',
+      password: '123456',
+    })
+    .expect(400)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.body.error).toBeDefined();
+    }));
+});
