@@ -7,9 +7,9 @@ describe('[POST] /api/v1/auth/signup', () => {
     .send({
       email: 'yusuf@ayo.com',
       first_name: 'Yusuf',
-      lastname: 'Ayo',
+      last_name: 'Ayo',
       password: '123456',
-      confirm_password: '654321',
+      confirm_password: '123456',
     })
     .expect(201)
     .expect('Content-Type', /json/)
@@ -21,9 +21,8 @@ describe('[POST] /api/v1/auth/signup', () => {
     .send({
       email: 'yusuf@ayo.com',
       first_name: 'Yusuf',
-      lastname: 'Ayo',
       password: '123456',
-      confirm_password: '654321',
+      confirm_password: '123456',
     })
     .expect(400)
     .expect('Content-Type', /json/)
@@ -46,11 +45,11 @@ describe('[POST] /api/v1/auth/signup', () => {
   it('should return a 409 if user already exists', () => request(server)
     .post('/api/v1/auth/signup')
     .send({
-      email: 'yusuf@ayo.com',
+      email: 'john@doe.com',
       first_name: 'Yusuf',
-      lastname: 'Ayo',
+      last_name: 'Ayo',
       password: '123456',
-      confirm_password: '654321',
+      confirm_password: '123456',
     })
     .expect(409)
     .expect('Content-Type', /json/)
