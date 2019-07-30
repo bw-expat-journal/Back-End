@@ -3,6 +3,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config(); // load .env variables
 
+const router = require('./routes');
+
 const server = express();
 
 server.use(helmet());
@@ -14,6 +16,8 @@ server.get('/', (req, res) => {
     message: 'Welcome to Expat Journal',
   });
 });
+
+server.use('/api/v1/', router);
 
 server.all('*', (req, res) => {
   res.status(404).send({
