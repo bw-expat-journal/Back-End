@@ -15,4 +15,10 @@ server.get('/', (req, res) => {
   });
 });
 
+server.all('*', (req, res) => {
+  res.status(404).send({
+    message: 'The resource you are looking for does not exist',
+  });
+});
+
 module.exports = server;
