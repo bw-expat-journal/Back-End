@@ -2,7 +2,7 @@ const validateUserInput = (req, res, next) => {
   const error = [];
   const { password, confirm_password } = req.body;
   let { first_name, email, last_name } = req.body;
-
+  console.log(email);
   if (password !== confirm_password) error.push('Passwords do not match.');
   else res.locals.password = password;
 
@@ -20,8 +20,9 @@ const validateUserInput = (req, res, next) => {
     error.push('Lastname provided is not valid. Only lowercase/uppercase letters between 2 and 59 characters are allowed.');
   } else res.locals.last_name = last_name;
 
-  email = email.toString().trim();
-  if (!/^[\w\d.\-_]+@[\w\d.\-_]+\.[\w\d]{1,9}(\.[\w\d]{2,9})?$/.test(email)) {
+  // eslint-disable-next-line no-control-regex
+  email = String(email.replace(/\u0000/g, '')).trim();
+  if (!/^[\w\d.\-_]+@[\w\d.\-_]+\.[\w\d]{1,9}(\.[\w\d\\]{2,9})?$/.test(email)) {
     error.push('Email provided is not valid.');
   } else res.locals.email = email;
 
