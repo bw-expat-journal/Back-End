@@ -1,11 +1,29 @@
 const request = require('supertest');
 const server = require('../server');
+const db = require('../models/dbConfig');
+
+beforeEach(async () => {
+  await db('users').truncate();
+  await request(server)
+    .post('/api/v1/auth/signup')
+    .send({
+      email: 'yusuf@ayo.com',
+      first_name: 'Yusuf',
+      last_name: 'Ayo',
+      password: '123456',
+      confirm_password: '123456',
+    });
+});
+
+afterEach(async () => {
+  await db('users').truncate();
+});
 
 describe('[POST] /api/v1/auth/signup', () => {
   it('should create user if all input are provided correctly', () => request(server)
     .post('/api/v1/auth/signup')
     .send({
-      email: 'yusuf@ayo.com',
+      email: 'yusuf@ayo1.com',
       first_name: 'Yusuf',
       last_name: 'Ayo',
       password: '123456',
@@ -45,7 +63,7 @@ describe('[POST] /api/v1/auth/signup', () => {
   it('should return a 409 if user already exists', () => request(server)
     .post('/api/v1/auth/signup')
     .send({
-      email: 'john@doe.com',
+      email: 'yusuf@ayo.com',
       first_name: 'Yusuf',
       last_name: 'Ayo',
       password: '123456',
