@@ -14,4 +14,9 @@ auth.post(
   Auth.signup,
 );
 
+auth.post(
+  '/login',
+  Auth.login,
+);
+
 module.exports = auth;

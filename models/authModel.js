@@ -19,7 +19,7 @@ function findById(id) {
 function add(user) {
   return db('users')
     .insert(user, 'id')
-    .returning(['id', 'email', 'first_name', 'last_name']);
+    .returning(['id', 'email', 'first_name', 'last_name', 'is_admin']);
 }
 
 module.exports = {
