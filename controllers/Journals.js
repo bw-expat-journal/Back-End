@@ -29,6 +29,12 @@ class Journals {
       res.status(500).json({ message: 'Internal Server Error', error });
     }
   }
+
+  static async getOne(req, res) {
+    res.status(200).send({
+      journal: req.journal,
+    });
+  }
 }
 
 module.exports = Journals;
