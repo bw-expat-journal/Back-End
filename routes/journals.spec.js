@@ -4,7 +4,7 @@ const db = require('../models/dbConfig');
 
 let token;
 
-beforeEach(async () => {
+beforeAll(async () => {
   const truncate = await db('users').truncate();
   if (truncate) {
     const response = await request(server)
@@ -20,13 +20,14 @@ beforeEach(async () => {
   }
 });
 
-afterEach(async () => {
+afterAll(async () => {
   await db('users').truncate();
 });
 
 describe('[POST] /api/v1/journals/', () => {
   it('should create a jounal if all input are provided correctly', () => request(server)
     .post('/api/v1/journals/')
+    .set('Authorization', token)
     .send({
       location: 'London',
       post: 'I stayed just a few months in London and I really cannot overemphasize how thrilled I am about the city',
@@ -38,13 +39,13 @@ describe('[POST] /api/v1/journals/', () => {
     }));
   it('should return a 400 if required fields are not provided', () => request(server)
     .post('/api/v1/journals/')
+    .set('Authorization', token)
     .send({
       post: '',
     })
     .expect(400)
     .expect('Content-Type', /json/)
     .then((res) => {
-      console.log(res);
       expect(res.body.error).toBeDefined();
     }));
 });
