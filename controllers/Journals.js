@@ -1,10 +1,22 @@
-const authModel = require('../models/authModel');
+const journalModel = require('../models/journalModel');
 
 class Journals {
   static async create(req, res) {
-    res.status(200).send({
-      message: 'Work in Progress',
-    });
+    const { location, post } = res.locals;
+    const { userId } = req.decoded;
+    const newJournal = {
+      location,
+      message: post,
+      userId,
+    };
+    try {
+      const response = await journalModel.add(newJournal);
+      res.status(201).send({
+        journal: response,
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Internal Server Error', error });
+    }
   }
 }
 
