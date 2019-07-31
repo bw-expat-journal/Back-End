@@ -5,8 +5,9 @@ const db = require('../models/dbConfig');
 let token;
 
 beforeAll(async () => {
-  const truncate = await db('users').truncate();
-  if (truncate) {
+  // const truncate = await db('users').truncate();
+  const deleteMe = await db('users').where('id', '>', '0').del();
+  if (deleteMe || deleteMe === 0) {
     const response = await request(server)
       .post('/api/v1/auth/signup')
       .send({
@@ -21,7 +22,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await db('users').truncate();
+  await await db('users').where('id', '>', '0').del();
 });
 
 describe('[POST] /api/v1/journals/', () => {
@@ -35,7 +36,7 @@ describe('[POST] /api/v1/journals/', () => {
     .expect(201)
     .expect('Content-Type', /json/)
     .then((res) => {
-      expect(res.body.data).toBeDefined();
+      expect(res.body.journal).toBeDefined();
     }));
   it('should return a 400 if required fields are not provided', () => request(server)
     .post('/api/v1/journals/')
