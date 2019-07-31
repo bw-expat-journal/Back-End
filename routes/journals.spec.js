@@ -50,3 +50,21 @@ describe('[POST] /api/v1/journals/', () => {
       expect(res.body.error).toBeDefined();
     }));
 });
+
+describe('[GET] /api/v1/journals/', () => {
+  it('should get a list of journal entries', () => request(server)
+    .get('/api/v1/journals/')
+    .set('Authorization', token)
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.body.journals).toBeDefined();
+    }));
+  it('should return a 401 if token is not provided', () => request(server)
+    .get('/api/v1/journals/')
+    .expect(401)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.body.error).toBeDefined();
+    }));
+});
