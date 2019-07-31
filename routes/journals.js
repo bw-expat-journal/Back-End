@@ -16,4 +16,10 @@ journals.post(
   Journals.create,
 );
 
+journals.get(
+  '/',
+  verifyToken,
+  Journals.get,
+);
+
 module.exports = journals;

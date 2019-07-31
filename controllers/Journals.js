@@ -18,6 +18,17 @@ class Journals {
       res.status(500).json({ message: 'Internal Server Error', error });
     }
   }
+
+  static async get(req, res) {
+    try {
+      const response = await journalModel.find();
+      res.status(200).send({
+        journals: response,
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Internal Server Error', error });
+    }
+  }
 }
 
 module.exports = Journals;
