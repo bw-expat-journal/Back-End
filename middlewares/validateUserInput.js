@@ -2,7 +2,6 @@ const validateUserInput = (req, res, next) => {
   const error = [];
   const { password, confirm_password } = req.body;
   let { first_name, email, last_name } = req.body;
-  console.log(email);
   if (password !== confirm_password) error.push('Passwords do not match.');
   else res.locals.password = password;
 
