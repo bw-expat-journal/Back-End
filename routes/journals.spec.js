@@ -31,7 +31,7 @@ describe('[POST] /api/v1/journals/', () => {
     .set('Authorization', token)
     .send({
       location: 'London',
-      post: 'I stayed just a few months in London and I really cannot overemphasize how thrilled I am about the city',
+      message: 'I stayed just a few months in London and I really cannot overemphasize how thrilled I am about the city',
     })
     .expect(201)
     .expect('Content-Type', /json/)
@@ -40,6 +40,41 @@ describe('[POST] /api/v1/journals/', () => {
     }));
   it('should return a 400 if required fields are not provided', () => request(server)
     .post('/api/v1/journals/')
+    .set('Authorization', token)
+    .send({
+      post: '',
+    })
+    .expect(400)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.body.error).toBeDefined();
+    }));
+});
+
+describe('[PUT] /api/v1/journals/:id', () => {
+  let journal;
+  beforeAll(() => request(server)
+    .get('/api/v1/journals/')
+    .set('Authorization', token)
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      ([journal] = res.body.journals);
+    }));
+  it('should update a jounal if all input are provided correctly', () => request(server)
+    .put(`/api/v1/journals/${journal.id}`)
+    .set('Authorization', token)
+    .send({
+      location: 'Columbia',
+      message: 'I stayed just a few months in London and I really cannot overemphasize how thrilled I am about the city',
+    })
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .then((response) => {
+      expect(response.body.journal).toBeDefined();
+    }));
+  it('should return a 400 if required fields are not provided', () => request(server)
+    .put(`/api/v1/journals/${journal.id}`)
     .set('Authorization', token)
     .send({
       post: '',
