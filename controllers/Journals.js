@@ -19,6 +19,25 @@ class Journals {
     }
   }
 
+  static async update(req, res) {
+    const { location, message } = res.locals;
+    const { userId } = req.decoded;
+    const { id } = req.journal;
+    const journal = {
+      location,
+      message,
+      userId,
+    };
+    try {
+      const response = await journalModel.update(journal, id);
+      res.status(200).send({
+        journal: response,
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Internal Server Error', error });
+    }
+  }
+
   static async get(req, res) {
     try {
       const response = await journalModel.find();

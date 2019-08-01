@@ -17,6 +17,16 @@ journals.post(
   Journals.create,
 );
 
+journals.put(
+  '/:id',
+  verifyToken,
+  validateId,
+  resolvePostType,
+  isEmpty,
+  validateJournalInput,
+  Journals.update,
+);
+
 journals.get(
   '/',
   verifyToken,
