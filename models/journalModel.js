@@ -28,9 +28,17 @@ async function add(journal) {
   return findById(newJournal.id);
 }
 
+async function update(journal, id) {
+  const [updatedJournal] = await db('journals')
+    .update(journal, '*')
+    .where({ id });
+  return findById(updatedJournal.id);
+}
+
 module.exports = {
   add,
   find,
   findBy,
   findById,
+  update,
 };
