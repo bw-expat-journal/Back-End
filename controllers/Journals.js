@@ -54,6 +54,20 @@ class Journals {
       journal: req.journal,
     });
   }
+
+  static async delete(req, res) {
+    const deleted = journalModel.remove(req.journal.id);
+
+    if (deleted) {
+      res.status(200).send({
+        message: 'Journal Deleted Successfully',
+      });
+    } else {
+      res.status(500).send({
+        error: 'Internal Server Error',
+      });
+    }
+  }
 }
 
 module.exports = Journals;

@@ -35,10 +35,15 @@ async function update(journal, id) {
   return findById(updatedJournal.id);
 }
 
+function remove(id) {
+  return db('journals').where({ id }).del();
+}
+
 module.exports = {
   add,
   find,
   findBy,
   findById,
   update,
+  remove,
 };

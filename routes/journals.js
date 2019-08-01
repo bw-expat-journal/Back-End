@@ -40,4 +40,11 @@ journals.get(
   Journals.getOne,
 );
 
+journals.delete(
+  '/:id',
+  verifyToken,
+  validateId,
+  Journals.delete,
+);
+
 module.exports = journals;
