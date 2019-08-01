@@ -2,11 +2,11 @@ const journalModel = require('../models/journalModel');
 
 class Journals {
   static async create(req, res) {
-    const { location, post } = res.locals;
+    const { location, message } = res.locals;
     const { userId } = req.decoded;
     const newJournal = {
       location,
-      message: post,
+      message,
       userId,
     };
     try {

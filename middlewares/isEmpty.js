@@ -9,7 +9,7 @@ const isEmpty = (req, res, next) => {
     error = populateError(req, 'email', 'password');
   }
   if (res.postType === 'journals' && req.method === 'POST') {
-    error = populateError(req, 'location', 'post');
+    error = populateError(req, 'location', 'message');
   }
   if (error.length) {
     const errorMsg = setErrorMsg(error);
