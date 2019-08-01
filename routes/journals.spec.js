@@ -103,3 +103,23 @@ describe('[GET] /api/v1/journals/', () => {
       expect(res.body.error).toBeDefined();
     }));
 });
+
+describe('[DELETE] /api/v1/journals/:id', () => {
+  let journal;
+  beforeAll(() => request(server)
+    .get('/api/v1/journals/')
+    .set('Authorization', token)
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      ([journal] = res.body.journals);
+    }));
+  it('should delete a jounal with the sopecified id', () => request(server)
+    .delete(`/api/v1/journals/${journal.id}`)
+    .set('Authorization', token)
+    .expect(200)
+    .expect('Content-Type', /json/)
+    .then((response) => {
+      expect(response.body.message).toBeDefined();
+    }));
+});
