@@ -56,8 +56,7 @@ class Journals {
   }
 
   static async delete(req, res) {
-    const deleted = journalModel.remove(req.journal.id);
-
+    const deleted = await journalModel.remove(req.journal.id);
     if (deleted) {
       res.status(200).send({
         message: 'Journal Deleted Successfully',
