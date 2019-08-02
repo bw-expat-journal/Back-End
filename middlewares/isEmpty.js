@@ -8,6 +8,9 @@ const isEmpty = (req, res, next) => {
   if (res.postType === 'login') {
     error = populateError(req, 'email', 'password');
   }
+  if (res.postType === 'journals' && (req.method === 'POST' || req.method === 'PUT')) {
+    error = populateError(req, 'location', 'message');
+  }
   if (error.length) {
     const errorMsg = setErrorMsg(error);
     return res.status(400).send({

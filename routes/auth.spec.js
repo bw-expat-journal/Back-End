@@ -3,7 +3,7 @@ const server = require('../server');
 const db = require('../models/dbConfig');
 
 beforeEach(async () => {
-  await db('users').truncate();
+  await db('users').where('id', '>', '0').del();
   await request(server)
     .post('/api/v1/auth/signup')
     .send({
@@ -16,7 +16,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await db('users').truncate();
+  await db('users').where('id', '>', '0').del();
 });
 
 describe('[POST] /api/v1/auth/signup', () => {
