@@ -3,12 +3,12 @@ const validateJournalInput = (req, res, next) => {
   let { location, message } = req.body;
 
   location = location.toString().trim();
-  if (!/^[\w\d][ ,\.!\"\'-\d\w\s]{1,50}$/.test(location)) {
+  if (!/^[\w\d][ ,\.!\"\'\\-\d\w\s]{1,50}$/.test(location)) {
     error.push('Location should be between 2 to 50 chars');
   } else res.locals.location = location;
 
   message = message.toString().trim();
-  if (!/^[\w\d][ ,\.!\"\'-\d\w\s]{0,280}[\w\d]$/.test(message)) {
+  if (!/^[\w\d][ ,\.!\"\'-\\\d\w\s]{0,280}[\w\d]$/.test(message)) {
     error.push('Message should be between 2 - 280');
   } else res.locals.message = message;
 
