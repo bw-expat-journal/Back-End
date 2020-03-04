@@ -11,7 +11,7 @@ function verifyToken(req, res, next) {
       if (err) {
         return res.status(401).json(err);
       }
-      req.decoded = decoded;
+      req.userId = decoded.userId;
       return next();
     });
   } else {

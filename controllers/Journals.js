@@ -2,12 +2,16 @@ const journalModel = require('../models/journalModel');
 
 class Journals {
   static async create(req, res) {
-    const { location, message } = res.locals;
-    const { userId } = req.decoded;
+    const {
+      location, message, image_url, caption,
+    } = res.locals;
+    const { userId } = req;
     const newJournal = {
       location,
       message,
       userId,
+      caption,
+      image_url,
     };
     try {
       const response = await journalModel.add(newJournal);
@@ -20,13 +24,17 @@ class Journals {
   }
 
   static async update(req, res) {
-    const { location, message } = res.locals;
-    const { userId } = req.decoded;
+    const {
+      location, message, image_url, caption,
+    } = res.locals;
+    const { userId } = req;
     const { id } = req.journal;
     const journal = {
       location,
       message,
       userId,
+      caption,
+      image_url,
     };
     try {
       const response = await journalModel.update(journal, id);
@@ -40,7 +48,7 @@ class Journals {
 
   static async get(req, res) {
     try {
-      const response = await journalModel.find();
+      const response = await journalModel.find(req.userId);
       res.status(200).send({
         journals: response,
       });
