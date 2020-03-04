@@ -114,19 +114,22 @@ This application is deployed on [heroku](https://expat-journals.herokuapp.com/) 
 ```javascript
 {
   message: 'just any message you want to share to fellow travellers/expatriates about your experience at a place',
-  location: 'London, UK'
+  location: 'London, UK',
+  image_url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lonelyplanet.com%2Fengland%2Flondon&psig=AOvVaw35sE4hrNybr_nCpmm3me_X&ust=1583384933569000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLi1htqGgOgCFQAAAAAdAAAAABAD',
+  caption: 'amazing view'
 }
 ```
+*image_url and caption are not required*
 
 **Response spec:**
 
 ```javascript
 {
     "journal": {
-        "caption": null,
+        "caption": "amazing view",
         "first_name": "John",
         "id": 123,
-        "image_url": null,
+        "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lonelyplanet.com%2Fengland%2Flondon&psig=AOvVaw35sE4hrNybr_nCpmm3me_X&ust=1583384933569000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLi1htqGgOgCFQAAAAAdAAAAABAD",
         "last_name": "Doe",
         "location": "London, UK",
         "message": 'just any message you want to share to fellow travellers/expatriates about your experience at a place'
@@ -141,7 +144,9 @@ This application is deployed on [heroku](https://expat-journals.herokuapp.com/) 
 ```javascript
 {
   message: 'just any message you want to share to fellow travellers/expatriates about your experience at a place',
-  location: 'Berlin, DE'
+  location: 'Berlin, DE',
+  image_url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lonelyplanet.com%2Fengland%2Flondon&psig=AOvVaw35sE4hrNybr_nCpmm3me_X&ust=1583384933569000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLi1htqGgOgCFQAAAAAdAAAAABAD',
+  caption: 'amazing views'
 }
 ```
 
@@ -150,10 +155,10 @@ This application is deployed on [heroku](https://expat-journals.herokuapp.com/) 
 ```javascript
 {
     "journal": {
-        "caption": null,
+        "caption": "amazing views",
         "first_name": "John",
         "id": 123,
-        "image_url": null,
+        "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lonelyplanet.com%2Fengland%2Flondon&psig=AOvVaw35sE4hrNybr_nCpmm3me_X&ust=1583384933569000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLi1htqGgOgCFQAAAAAdAAAAABAD",
         "last_name": "Doe",
         "location": "Berlin, DE",
         "message": 'just any message you want to share to fellow travellers/expatriates about your experience at a place'
