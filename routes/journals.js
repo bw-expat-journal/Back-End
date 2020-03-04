@@ -5,6 +5,7 @@ const resolvePostType = require('../middlewares/resolvePostType');
 const validateJournalInput = require('../middlewares/validateJournalInput');
 const verifyToken = require('../middlewares/verifyToken');
 const validateId = require('../middlewares/validateId');
+const validateUser = require('../middlewares/validateUser');
 
 const journals = Router();
 
@@ -21,6 +22,7 @@ journals.put(
   '/:id',
   verifyToken,
   validateId,
+  validateUser,
   resolvePostType,
   isEmpty,
   validateJournalInput,
@@ -37,6 +39,7 @@ journals.get(
   '/:id',
   verifyToken,
   validateId,
+  validateUser,
   Journals.getOne,
 );
 
@@ -44,6 +47,7 @@ journals.delete(
   '/:id',
   verifyToken,
   validateId,
+  validateUser,
   Journals.delete,
 );
 

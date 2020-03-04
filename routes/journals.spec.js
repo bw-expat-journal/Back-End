@@ -95,6 +95,14 @@ describe('[GET] /api/v1/journals/', () => {
     .then((res) => {
       expect(res.body.journals).toBeDefined();
     }));
+  it('should return a 401 if token is not valid', () => request(server)
+    .get('/api/v1/journals/')
+    .set('Authorization', 'token')
+    .expect(401)
+    .expect('Content-Type', /json/)
+    .then((res) => {
+      expect(res.body.name).toBe('JsonWebTokenError');
+    }));
   it('should return a 401 if token is not provided', () => request(server)
     .get('/api/v1/journals/')
     .expect(401)

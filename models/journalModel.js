@@ -1,8 +1,9 @@
 const db = require('./dbConfig');
 
-function find() {
+function find(id) {
   return db('journals')
     .join('users', 'users.id', 'userId')
+    .where({ 'users.id': id })
     .select('users.first_name', 'journals.id', 'users.last_name', 'journals.location', 'journals.caption', 'journals.image_url', 'journals.message');
 }
 
