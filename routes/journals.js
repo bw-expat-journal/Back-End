@@ -6,6 +6,8 @@ const validateJournalInput = require('../middlewares/validateJournalInput');
 const verifyToken = require('../middlewares/verifyToken');
 const validateId = require('../middlewares/validateId');
 const validateUser = require('../middlewares/validateUser');
+const uploadImage = require('../middlewares/uploadImage');
+const uploadToCloudinary = require('../middlewares/uploadToCloudinary');
 
 const journals = Router();
 
@@ -16,6 +18,13 @@ journals.post(
   isEmpty,
   validateJournalInput,
   Journals.create,
+);
+
+journals.post(
+  '/upload',
+  verifyToken,
+  uploadImage,
+  uploadToCloudinary,
 );
 
 journals.put(
