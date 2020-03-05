@@ -10,12 +10,12 @@ const validateJournalInput = (req, res, next) => {
   } else res.locals.location = location;
 
   message = message.toString().trim();
-  if (!/^[\w\d][ ,.!"'-\\\d\w\s]{0,280}[\w\d]$/.test(message)) {
+  if (!/^[\w\d][ ,.!"'-\\\d\w\s]{0,280}$/.test(message)) {
     error.push('Message should be between 2 - 280');
   } else res.locals.message = message;
 
   caption = caption && caption.toString().trim();
-  if (caption && !/^[\w\d][ ,.!"'-\\\d\w\s]{0,280}[\w\d]$/.test(caption)) {
+  if (caption && !/^[\w\d][ ,.!"'-\\\d\w\s]{0,280}$/.test(caption)) {
     error.push('Caption should be between 2 - 280');
   } else res.locals.caption = caption;
 
